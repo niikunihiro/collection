@@ -4,6 +4,10 @@ namespace Collection;
 
 use Closure;
 
+/**
+ * Class Collection
+ * @package Collection
+ */
 class Collection {
 
     /** @var array  */
@@ -102,5 +106,25 @@ class Collection {
         }
 
         return $this->collection[$key];
+    }
+
+    /**
+     * @param $keys
+     * @return $this
+     */
+    public function forget($keys)
+    {
+        $this->unset_r((array)$keys);
+        return $this;
+    }
+
+    /**
+     * @param array $keys
+     */
+    private function unset_r(array $keys)
+    {
+        array_walk_recursive($keys, function($key) {
+            unset($this->collection[$key]);
+        });
     }
 }

@@ -5,12 +5,6 @@ namespace CollectionTest;
 use Collection\Collection;
 
 /**
- * Author: kunisan
- * Date: 2015/12/28
- * Time: 1:18
- */
-
-/**
  * Class CollectionTest
  * @package CollectionTest
  */
@@ -121,5 +115,28 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
         $collection = new Collection(['foo' => 'bar']);
         $actual = $collection->get('fizz', $default);
         $this->assertEquals($default, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function forgetで要素を削除する()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2]);
+        $collection->forget('foo');
+        $this->assertFalse($collection->has('foo'));
+        $this->assertTrue($collection->has('bar'));
+    }
+
+    /**
+     * @test
+     */
+    public function forgetで複数要素を削除する()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2, 'baz' => 3]);
+        $collection->forget(['foo', 'bar']);
+        $this->assertFalse($collection->has('foo'));
+        $this->assertFalse($collection->has('bar'));
+        $this->assertTrue($collection->has('baz'));
     }
 }
