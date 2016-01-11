@@ -43,4 +43,18 @@ class CollectionChainTest extends \PHPUnit_Framework_TestCase {
     {
         //
     }
+
+    /**
+     * @test
+     */
+    public function 連想配列のキーがfooの要素だけを返す()
+    {
+        $data = ['foo' => 1, 'bar' => 2];
+        $expected = ['foo' => 1];
+        $collect = new Collection($data);
+        $actual = $collect->select(function($key) {
+            return $key === 'foo';
+        }, ARRAY_FILTER_USE_KEY)->all();
+        $this->assertSame($expected, $actual);
+    }
 }

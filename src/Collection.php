@@ -31,23 +31,24 @@ class Collection {
     }
 
     /**
-     * @param Closure $func
+     * @param Closure $callback
+     * @param int $flag
      * @return $this
      */
-    public function select(Closure $func)
+    public function select(Closure $callback, $flag = 0)
     {
-        $this->collection = array_filter($this->collection, $func);
+        $this->collection = array_filter($this->collection, $callback, $flag);
 
         return new static($this->collection);
     }
 
     /**
-     * @param Closure $func
+     * @param Closure $callback
      * @return $this
      */
-    public function map(Closure $func)
+    public function map(Closure $callback)
     {
-        $this->collection = array_map($func, $this->collection);
+        $this->collection = array_map($callback, $this->collection);
 
         return new static($this->collection);
     }
