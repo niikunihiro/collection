@@ -41,7 +41,6 @@ class Collection {
         return $this;
     }
 
-
     /**
      * @param Closure $func
      * @return $this
@@ -51,16 +50,6 @@ class Collection {
         $this->collection = array_map($func, $this->collection);
 
         return $this;
-    }
-
-    /**
-     * @param Closure $callback
-     * @param null $initial
-     * @return mixed
-     */
-    public function reduce(Closure $callback, $initial = NULL)
-    {
-        return array_reduce($this->collection, $callback, $initial);
     }
 
     /**
@@ -75,6 +64,16 @@ class Collection {
         );
 
         return $this;
+    }
+
+    /**
+     * @param Closure $callback
+     * @param null $initial
+     * @return mixed
+     */
+    public function reduce(Closure $callback, $initial = NULL)
+    {
+        return array_reduce($this->collection, $callback, $initial);
     }
 
     /**

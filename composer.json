@@ -1,6 +1,6 @@
 {
     "name": "niikunihiro/collection",
-    "description": "array to collection",
+    "description": "Array Functions Wrapper",
     "type": "library",
     "license": "MIT",
     "authors": [
