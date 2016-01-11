@@ -27,7 +27,7 @@ class Collection {
      */
     public function all()
     {
-        return $this->collection;
+        return array_merge($this->collection);
     }
 
     /**
