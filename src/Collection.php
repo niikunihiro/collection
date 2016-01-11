@@ -38,7 +38,7 @@ class Collection {
     {
         $this->collection = array_filter($this->collection, $func);
 
-        return $this;
+        return new static($this->collection);
     }
 
     /**
@@ -49,7 +49,7 @@ class Collection {
     {
         $this->collection = array_map($func, $this->collection);
 
-        return $this;
+        return new static($this->collection);
     }
 
     /**
