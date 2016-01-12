@@ -139,4 +139,22 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
         $this->assertFalse($collection->has('bar'));
         $this->assertTrue($collection->has('baz'));
     }
+    
+    /**
+     * @test
+     */
+    public function valuesで添字のキーをリセットする()
+    {
+        $expected = [
+            0 => ['foo' => 1],
+            1 => ['bar' => 2],
+        ];
+        $data = [
+            10 => ['foo' => 1],
+            11 => ['bar' => 2],
+        ];
+        $collection = new Collection($data);
+        $actual = $collection->values()->all();
+        $this->assertEquals($expected, $actual);
+    }
 }

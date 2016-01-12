@@ -27,13 +27,13 @@ class Collection {
      */
     public function all()
     {
-        return array_merge($this->collection);
+        return $this->collection;
     }
 
     /**
      * @param Closure $callback
      * @param int $flag
-     * @return $this
+     * @return static
      */
     public function select(Closure $callback, $flag = 0)
     {
@@ -44,7 +44,7 @@ class Collection {
 
     /**
      * @param Closure $callback
-     * @return $this
+     * @return static
      */
     public function map(Closure $callback)
     {
@@ -119,9 +119,19 @@ class Collection {
     }
 
     /**
+     * @return static
+     */
+    public function values()
+    {
+        $this->collection = array_values($this->collection);
+
+        return new static($this->collection);
+    }
+
+    /**
      * @param array $keys
      */
-    private function unset_r(array $keys)
+    protected function unset_r(array $keys)
     {
         array_walk_recursive($keys, function($key) {
             unset($this->collection[$key]);
