@@ -15,11 +15,11 @@ class Collection {
 
     /**
      * Collection constructor.
-     * @param array $arr
+     * @param array $items
      */
-    public function __construct(array $arr)
+    public function __construct(array $items)
     {
-        $this->collection = $arr;
+        $this->collection = $items;
     }
 
     /**
@@ -127,6 +127,29 @@ class Collection {
 
         return new static($this->collection);
     }
+
+    /**
+     * @param array $items
+     * @return static
+     */
+    public function merge(array $items)
+    {
+        $this->collection = array_merge($this->collection, $items);
+
+        return new static($this->collection);
+    }
+
+    /**
+     * @param array $items
+     * @return static
+     */
+    public function merge_recursive(array $items)
+    {
+        $this->collection = array_merge_recursive($this->collection, $items);
+
+        return new static($this->collection);
+    }
+
 
     /**
      * @param array $keys
