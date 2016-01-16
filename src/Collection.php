@@ -64,7 +64,7 @@ class Collection {
             array_fill_keys($keys, '')
         );
 
-        return $this;
+        return new static($this->collection);
     }
 
     /**
@@ -115,7 +115,8 @@ class Collection {
     public function forget($keys)
     {
         $this->unset_r((array)$keys);
-        return $this;
+
+        return new static($this->collection);
     }
 
     /**
@@ -150,6 +151,39 @@ class Collection {
         return new static($this->collection);
     }
 
+    /**
+     * @return mixed
+     */
+    public function pop()
+    {
+        return array_pop($this->collection);
+    }
+
+    /**
+     * @param $value
+     * @return int
+     */
+    public function push($value)
+    {
+        return array_push($this->collection, $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function shift()
+    {
+        return array_shift($this->collection);
+    }
+
+    /**
+     * @param $value
+     * @return int
+     */
+    public function unshift($value)
+    {
+        return array_unshift($this->collection, $value);
+    }
 
     /**
      * @param array $keys
